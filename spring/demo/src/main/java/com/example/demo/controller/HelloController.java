@@ -3,23 +3,22 @@ package com.example.demo.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.service.MessageService;
+import com.example.demo.service.ConfigMessageService;
 
 @RestController
 public class HelloController {
 
-    private final MessageService messageService;
+    private final ConfigMessageService configMessageService;
 
-    // コンストラクタインジェクション(推奨)
-    public HelloController (MessageService messageService){
-        this.messageService = messageService;
+    public HelloController(ConfigMessageService configMessageService) {
+        this.configMessageService = configMessageService;
     }
 
-    @GetMapping("/hello")
-    public String hello() {
-        return messageService.getMessage();
+    @GetMapping("/config")
+    public String config() {
+        return configMessageService.getConfigMessage();
     }
-  
+}
 /*
 helloService.getMessage()を呼ぶことで
 →Controller→Serviceの流れが完成
@@ -43,4 +42,4 @@ ControllerはMessageService(インターフェース)だけを受け取る
 Springがどちらかを注入する
 →実装が複数ある場合、Springは迷うため@Primaryを使用して優先する実装を指定する。
 */
-}
+
