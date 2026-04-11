@@ -3,20 +3,22 @@ package com.example.demo.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.service.ConfigMessageService;
+import com.example.demo.config.AppProperties;
 
 @RestController
 public class HelloController {
 
-    private final ConfigMessageService configMessageService;
+    private final AppProperties appProperties;
 
-    public HelloController(ConfigMessageService configMessageService) {
-        this.configMessageService = configMessageService;
+    public HelloController(AppProperties appProperties) {
+        this.appProperties = appProperties;
     }
 
-    @GetMapping("/config")
-    public String config() {
-        return configMessageService.getConfigMessage();
+    @GetMapping("/appinfo")
+    public String appInfo() {
+        return appProperties.getMessage()
+                + " / version: " + appProperties.getVersion()
+                + " / author:" + appProperties.getAuthor();
     }
 }
 /*
