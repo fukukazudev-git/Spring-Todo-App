@@ -1,18 +1,24 @@
 package com.example.demo.todo;
+import jakarta.persistence.*;
 
-public class TodoDto{
+//DBのテーブルになる
+@Entity
+public class TodoEntity {
+    //IDを主キーとして自動生成する設定
+    @Id
+    //ID生成の戦略をIDENTITYに設定することで、データベースが自動的にIDを生成するようになる
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private boolean done;
 
-    public TodoDto(){
-
-    }
-    public TodoDto(Long id , String title, boolean done){
-        this.id = id;
+    public TodoEntity(){}
+    
+    public TodoEntity(String title, boolean done){
         this.title = title;
         this.done = done;
     }
+
     public Long getId(){
         return id;
     }

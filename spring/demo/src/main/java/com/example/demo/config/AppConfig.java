@@ -47,5 +47,4 @@ Springが自動で作らないクラスをBeanにできる
 同じクラスで複数のBeanを管理する必要がある場合は@Beanを使用するとよい
 @Component→Spring Bootがいい感じに依存関係を調節する
 @Bean→より柔軟な定義が可能
-
  */

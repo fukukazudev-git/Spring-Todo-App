@@ -1,0 +1,23 @@
+### ToDo追加
+POST http://localhost:8080/todo
+Content-Type: application/json
+
+{
+  "title": "買い物に行く",
+  "done": false
+}
+
+### ToDo削除
+DELETE http://localhost:8080/todo/1
+
+### ToDo一覧
+GET http://localhost:8080/todo
+
+### ToDo更新
+PUT http://localhost:8080/todo/1
+Content-Type: application/json
+
+{
+  "title":"買い物に行く(完了)",
+  "done":true
+}
