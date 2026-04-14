@@ -3,7 +3,7 @@ POST http://localhost:8080/todo
 Content-Type: application/json
 
 {
-  "title": "買い物に行く",
+  "title": "テスト登録",
   "done": false
 }
 

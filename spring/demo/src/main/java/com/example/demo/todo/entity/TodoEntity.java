@@ -1,4 +1,4 @@
-package com.example.demo.todo;
+package com.example.demo.todo.entity;
 import jakarta.persistence.*;
 
 //DBのテーブルになる

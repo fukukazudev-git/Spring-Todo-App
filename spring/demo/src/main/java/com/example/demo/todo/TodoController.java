@@ -1,6 +1,8 @@
 package com.example.demo.todo;
 import java.util.List;
 
+import com.example.demo.todo.dto.TodoDto;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,23 +20,25 @@ public class TodoController {
         this.todoService = todoService;
     }
 
+    //新規作成
     @PostMapping("/todo")
-    public TodoEntity createTodo(@RequestBody TodoEntity dto){
-        return todoService.addTodo(dto);
+    public TodoDto create(@RequestBody TodoDto dto){
+        return todoService.create(dto);
     }
+    //全件取得
     @GetMapping("/todo")
     public List<TodoDto> getTodos() {
         return todoService.getAll();
     }
-
+    //削除
     @DeleteMapping("/todo/{id}")  //{id}はURLの一部を変数として受け取る
-    public void deleteTodo(@PathVariable Long id){
-        todoService.deleteTodo(id);
+    public void delete(@PathVariable Long id){
+        todoService.delete(id);
     }
-
+    //更新処理
     @PutMapping("/todo/{id}")
-    public TodoDto updateTodo(@PathVariable Long id , @RequestBody TodoDto dto){
-        return todoService.updateTodo(id, dto);
+    public TodoDto update(@PathVariable Long id , @RequestBody TodoDto dto){
+        return todoService.update(id, dto);
     }
 
 }

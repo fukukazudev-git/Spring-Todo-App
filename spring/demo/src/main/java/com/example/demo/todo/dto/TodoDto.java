@@ -1,4 +1,4 @@
-package com.example.demo.todo;
+package com.example.demo.todo.dto;
 
 public class TodoDto{
     private Long id;

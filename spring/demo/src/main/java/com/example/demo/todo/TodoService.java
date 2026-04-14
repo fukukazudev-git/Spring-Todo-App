@@ -3,6 +3,10 @@ package com.example.demo.todo;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.todo.dto.TodoDto;
+import com.example.demo.todo.entity.TodoEntity;
+import com.example.demo.todo.repository.TodoRepository;
+
 @Service
 public class TodoService {
     
@@ -13,22 +17,26 @@ public class TodoService {
     }
 
     //登録処理
-    public TodoEntity create(String title, boolean done){
-        TodoEntity entity = new TodoEntity(title, done);
-        return repository.save(entity);
+    public TodoDto create(TodoDto dto){
+        TodoEntity entity = new TodoEntity(dto.getTitle(), dto.isDone());
+        TodoEntity saved = repository.save(entity);
+        return new TodoDto(saved.getId(), saved.getTitle(), saved.isDone());
     }
 
     //全件取得
-    public List<TodoEntity> getAll(){
-        return repository.findAll();
+    public List<TodoDto> getAll(){
+        return repository.findAll().stream()
+                .map(e -> new TodoDto(e.getId(), e.getTitle(), e.isDone()))
+                .toList();
     }
 
     //更新処理
-    public TodoEntity update(Long id, String title, boolean done){
+    public TodoDto update(Long id, TodoDto dto){
         TodoEntity entity = repository.findById(id).orElseThrow();
-        entity.setTitle(title);
-        entity.setDone(done);
-        return repository.save(entity);
+        entity.setTitle(dto.getTitle());
+        entity.setDone(dto.isDone());
+        TodoEntity updated = repository.save(entity);
+        return new TodoDto(updated.getId(), updated.getTitle(), updated.isDone());
     }
 
     //削除処理
